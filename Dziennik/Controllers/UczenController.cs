@@ -17,7 +17,7 @@ namespace AppDziennik.Controllers
 
         public ActionResult Index()
         {
-            var db_u = new UczenDataContext();
+            var db_u = new DBDziennik();
             return View("Index", db_u.Uczniowie.ToList());
         }
 
@@ -26,7 +26,7 @@ namespace AppDziennik.Controllers
 
         public ActionResult Details(int id_u)
         {
-            var db_u = new UczenDataContext();
+            var db_u = new DBDziennik();
             var u = db_u.Uczniowie.Find(id_u);
             return View("Details", u);
         }
@@ -51,7 +51,7 @@ namespace AppDziennik.Controllers
         [HttpPost]
         public ActionResult Create(Uczen U)
         {
-            var db_u = new UczenDataContext();
+            var db_u = new DBDziennik();
             if (ModelState.IsValid)
             {
                 db_u.Uczniowie.Add(U);
@@ -69,7 +69,7 @@ namespace AppDziennik.Controllers
 
         public ActionResult Edit(int id_u)
         {
-            var db_u = new UczenDataContext();
+            var db_u = new DBDziennik();
             return View("Edit", db_u.Uczniowie.Find(id_u));
         }
 
@@ -81,7 +81,7 @@ namespace AppDziennik.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db_u = new UczenDataContext();
+                var db_u = new DBDziennik();
                 db_u.Uczniowie.AddOrUpdate(U);
                 db_u.SaveChanges();
                 return RedirectToAction("Index");
@@ -95,7 +95,7 @@ namespace AppDziennik.Controllers
 
         public ActionResult Delete(int id_u)
         {
-            var db_u = new UczenDataContext();
+            var db_u = new DBDziennik();
             var u = db_u.Uczniowie.Find(id_u);
             return View("Delete", u);
         }
@@ -106,7 +106,7 @@ namespace AppDziennik.Controllers
         [HttpPost]
         public ActionResult Delete(int id_u, bool form=true)
         {
-            var db_u = new UczenDataContext();
+            var db_u = new DBDziennik();
             Uczen U = db_u.Uczniowie.Find(id_u);
             if (ModelState.IsValid)
             {
